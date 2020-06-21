@@ -2,6 +2,9 @@ package com.cheetah.test;
 
 import android.util.Log;
 
+import java.io.File;
+import java.util.List;
+
 public class Hello {
 
 
@@ -21,5 +24,8 @@ public class Hello {
 
     public native void execute();
 
-    public native JuneLeoModel getModel(int age,String name);
+    public native JuneLeoModel getModel(int age, String name);
+
+    public native void getFiles(String path);
+
 }

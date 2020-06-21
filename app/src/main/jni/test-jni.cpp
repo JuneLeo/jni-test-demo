@@ -7,6 +7,10 @@
 #include <android/log.h>
 #include <stdio.h>
 #include <time.h>
+#include <dirent.h>
+#include <string.h>
+#include <string>
+#include <vector>
 
 
 #define TAG "song" // 这个是自定义的LOG的标识
@@ -16,6 +20,7 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,TAG ,__VA_ARGS__) // 定义LOGE类型
 #define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,TAG ,__VA_ARGS__) // 定义LOGF类型
 
+using namespace std;
 
 extern "C" JNIEXPORT jstring JNICALL Java_com_cheetah_test_Hello_sayHello
         (JNIEnv *env, jobject jobj) {
@@ -65,4 +70,45 @@ extern "C" JNIEXPORT jobject JNICALL Java_com_cheetah_test_Hello_getModel
     env->SetObjectField(jmodel, jnameId, jname);
     return jmodel;
 }
+
+void recursive_file(vector<string>, string);
+
+extern "C" JNIEXPORT void JNICALL Java_com_cheetah_test_Hello_getFiles
+        (JNIEnv *env, jobject jobj, jstring jpath) {
+    LOGD("jni file");
+    jboolean is_copy;
+    const char *path_dir = env->GetStringUTFChars(jpath, &is_copy);
+
+    vector<string> vector_file;
+    path_dir ="/mnt/sdcard";
+    recursive_file(vector_file, string(path_dir));
+
+}
+
+
+void recursive_file(vector<string> vector, string dir) {
+    DIR *dir_path = opendir(dir.c_str());
+
+    if (dir_path == NULL) {
+        LOGD("%s is null",dir.c_str());
+        return;
+    }
+    struct dirent *file;
+    while ((file = readdir(dir_path)) != NULL) {
+//        if (strcmp(file->d_name, ".") == 0 || strcmp(file->d_name, "..") == 0) {
+//            continue;
+//        }
+        if (file->d_type == DT_DIR) {
+            char *dir_name = file->d_name;
+            LOGD("%s", dir_name);
+//            recursive_file(vector,)
+        } else {
+            char *file_name = file->d_name;
+            LOGD("%s", file_name);
+        }
+    }
+}
+
+
+
 

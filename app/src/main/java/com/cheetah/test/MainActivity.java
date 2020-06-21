@@ -3,9 +3,12 @@ package com.cheetah.test;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     Hello hello = new Hello();
@@ -17,8 +20,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onJniTest(View view) {
-        JuneLeoModel pengfei = hello.getModel(25, "pengfei");
-        Log.d("song", pengfei.toString());
+//        JuneLeoModel pengfei = hello.getModel(25, "pengfei");
+//        Log.d("song", pengfei.toString());
+        String externalStorageState = Environment.getExternalStorageDirectory().getAbsolutePath();
+        Log.d("song", externalStorageState);
+        externalStorageState = externalStorageState;
+        if (new File(externalStorageState).exists()) {
+            Log.d("song", externalStorageState);
+        }
+        hello.getFiles("/mnt/sdcard/");
+
+
     }
 
     public void onJavaExec(View view) {

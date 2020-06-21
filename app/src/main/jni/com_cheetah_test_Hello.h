@@ -39,6 +39,14 @@ JNIEXPORT void JNICALL Java_com_cheetah_test_Hello_execute
 JNIEXPORT jobject JNICALL Java_com_cheetah_test_Hello_getModel
   (JNIEnv *, jobject, jint, jstring);
 
+/*
+ * Class:     com_cheetah_test_Hello
+ * Method:    getFiles
+ * Signature: (Ljava/lang/String;)V
+ */
+JNIEXPORT void JNICALL Java_com_cheetah_test_Hello_getFiles
+  (JNIEnv *, jobject, jstring);
+
 #ifdef __cplusplus
 }
 #endif
