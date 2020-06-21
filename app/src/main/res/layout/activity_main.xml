@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Hello World!"
+        android:onClick="onJniTest" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="onJavaExec"
+        android:text="java执行"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="onJniExec"
+        android:text="jni执行"/>
+
+</LinearLayout>
